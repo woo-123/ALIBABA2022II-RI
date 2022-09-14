@@ -1,0 +1,124 @@
+.App {
+  text-align: center;
+}
+#root{
+  width: 100%;
+  height: 100vh;
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.container1{
+  width:70%;
+  margin:0 auto;
+  text-align: center;
+  height:100vh;
+}
+.container2{
+  display:flex;
+  flex-direction: column;
+  width:100%;
+  height:100vh;
+}
+.tittle{
+  padding:20px 10px ;
+  font-size:2.5em;
+  color:white;
+  width:100%;
+  margin:0 auto;
+  font-weight: bold;
+}
+.container3{
+  padding:50px 0;
+  width:100%;
+  height:20vh;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius:20px;
+  border:solid 1px rgba(255, 255, 255, .5);
+  backdrop-filter:blur(20px);
+}
+.container-url{
+  margin-top:20px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+.container-url label{
+  font-size:20px;
+  margin-right: 20px;
+  color: white;
+  font-weight: bold;
+}
+.container-url b{
+  font-size:25px;
+}
+.container-url input{
+  border-radius: 5px;
+  padding: 5px;
+  outline: none;
+  width: 200px;
+  transition: all .3s 
+}
+.container-url input:focus{
+  width: 450px;
+}
+button{
+  margin-top:40px;
+  border-radius: 5px;
+  padding: 8px;
+  background:linear-gradient(111deg, #677ac6c4, #9edd99be);
+  color: rgb(5, 0, 0);
+  cursor: pointer;
+  transition: all .3s ;
+  border: 1px solid rgba(255, 255, 255, 0.647);
+
+}
+button:hover{
+  transform: scale(1.1);
+}
+.Result{
+  margin-top:40px;
+  width:100%;
+  height:50vh;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius:20px;
+  border:solid 1px rgba(255, 255, 255, .5);
+  backdrop-filter:blur(20px);
+  
+}
+.Results2{
+  display:flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
