@@ -7,6 +7,7 @@ const path = require('path');
 app.use(cors())
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '/client/build')));
+var port = process.env.PORT || 5000 ; 
 //Routes 
      //create a todo 
         app.post("/todos", async (req, res)=>{
@@ -30,6 +31,6 @@ app.use(express.static(path.join(__dirname, '/client/build')));
     //update a todo  
 
     //delete a todo 
-app.listen(process.env.PORT || 5000,() =>{
-    console.log("El server se Inicio en el puerto 5000")
+app.listen( port ,() =>{
+    console.log("El server se Inicio en el puerto " + port);
 })
