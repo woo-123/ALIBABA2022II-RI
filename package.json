@@ -10,8 +10,7 @@
     "pg": "^8.8.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "dev":"nodemon ./index.js localhost 5000"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC"
