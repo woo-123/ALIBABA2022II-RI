@@ -35,10 +35,10 @@ function App() {
     try{
       const res = await fetch("http://localhost:5000/todos",{
       method: 'POST',
-      body:JSON.stringify(data.description),
+      body:JSON.stringify(data),
       headers: {"Content-Type":"application/json"},
-    })
-    
+    }
+    )
     const data123= await res.json();
      console.log(data123);
     }catch(err){
@@ -49,10 +49,18 @@ function App() {
   // Display JSON data in readable format
   const PrettyPrintJson = (data) => {
     handSubmit(data)
-    const datos=data.description.tags ;
-    let dataTags = datos.map((lista)=> <li key={lista}>{lista}</li>);
-    return (<div><ul><li>Texto Analizado de la imagen por la IA: <b>{JSON.stringify(data.description.captions[0].text)}</b></li></ul>
-      Tags:<ul>{dataTags}</ul>
+    console.log(data);
+    let tags = [];
+    let texto='';
+    for(let i=0;i<data.text.readResults[0].lines.length;i++){
+         texto += `${data.text.readResults[0].lines[i].text} `
+        }
+    for (let i=0 ; i<data.tags.length;i++){
+            tags[i]=data.tags[i].name;
+    }
+    let dataTags = tags.map((lista)=> <li key={lista}>{lista}</li>);
+    return (<div className='ulTags'><ul> Analisis de la imagen por la IA<li><b>{JSON.stringify(data.description.captions[0].text)}</b></li></ul>
+      Tags:<ul >{dataTags}</ul> TextoConstruido <ul><li>{texto}</li></ul>
       </div>
     );
   }
@@ -87,7 +95,9 @@ function App() {
       }
       {processing && <div>Processing</div>}
       {analysis && DisplayResults()}
+      
       </div>
+
     )
   }
   

@@ -13,8 +13,20 @@ const port = process.env.PORT || 5000;
         app.post("/todos", async (req, res)=>{
             try {
                 console.log(req.body)
-                const {tags,captions} = req.body;
-                const newTodo = await pool.query("Insert INTO descripcion (tags,description) VALUES($1,$2) ",[tags,captions])
+                
+                const data = req.body;
+              
+                let texto='';
+                for(let i=0;i<data.text.readResults[0].lines.length;i++){
+                    texto += `${data.text.readResults[0].lines[i].text} `
+                }
+                let hola ='';
+                for (let i=0;i<data.tags.length;i++){
+                    hola += `${data.tags[i].name}, ` 
+                }
+                console.log(texto);
+                const captions=data.description.captions;
+                const newTodo = await pool.query("Insert INTO descripcion (tags,description,textoconst) VALUES($1,$2,$3) ",[hola,captions,texto])
                 res.json(newTodo);
             } catch (err) {
                 console.log(err.message);
