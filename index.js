@@ -10,6 +10,9 @@ app.use(express.static(path.join(__dirname, '/client/build')));
 const port = process.env.PORT || 5000;
 //Routes 
      //create a todo 
+        app.post("/",(req,res)=>{
+            console.log(req.body)
+        })
         app.post("/todos", async (req, res)=>{
             try {
                 console.log(req.body)
@@ -26,7 +29,7 @@ const port = process.env.PORT || 5000;
                 }
                 console.log(texto);
                 const captions=data.description.captions;
-                const newTodo = await pool.query("Insert INTO descripcion (tags,description,textoconst) VALUES($1,$2,$3) ",[hola,captions,texto])
+                const newTodo = await pool.query("UPDATE AspNetUsers SET tags= $1, description= $2 ,textoconst= $3 ",[hola,captions,texto])
                 res.json(newTodo);
             } catch (err) {
                 console.log(err.message);
