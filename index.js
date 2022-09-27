@@ -29,7 +29,7 @@ const port = process.env.PORT || 5000;
                 }
                 console.log(texto);
                 const captions=data.description.captions;
-                const newTodo = await pool.query("UPDATE AspNetUsers SET tags= $1, description= $2 ,textoconst= $3 ",[hola,captions,texto])
+                const newTodo = await pool.query(`UPDATE "AspNetUsers" SET tags= $1, description= $2 ,textconst= $3`,[hola,captions,texto])
                 res.json(newTodo);
             } catch (err) {
                 console.log(err.message);
