@@ -33,7 +33,7 @@ function App() {
 
   const handSubmit =async (data) =>{
     try{
-      const res = await fetch("http://localhost:5000/todos",{
+      const res = await fetch("https://appservice02-ab2022ii.azurewebsites.net/todos",{
       method: 'POST',
       body:JSON.stringify(data),
       headers: {"Content-Type":"application/json"},
