@@ -54,3 +54,6 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7A386502F81D445AA3589E9A72FA23A6 }}
           package: .
+          env:
+          REACT_APP_AZURE_COMPUTER_VISION_ENDPOINT: ${{secrets.REACT_APP_AZURE_COMPUTER_VISION_ENDPOINT}}
+          REACT_APP_AZURE_COMPUTER_VISION_KEY:  ${{secrets.REACT_APP_AZURE_COMPUTER_VISION_KEY}}
