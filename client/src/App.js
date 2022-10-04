@@ -10,6 +10,8 @@ function App() {
   const [analysis, setAnalysis] = useState(null);
   const [processing, setProcessing] = useState(false);
   
+  const[correo,setCorreo] = useState(null);
+
   const handleChange = (e) => {
     e.preventDefault();
     setFileSelected(e.target.value)
@@ -32,10 +34,12 @@ function App() {
   };
 
   const handSubmit =async (data) =>{
+    const envio = {data ,correo} ;
+    console.log(correo)
     try{
-      const res = await fetch("https://appservice02-ab2022ii.azurewebsites.net/todos",{
+      const res = await fetch("http://localhost:5000/todos",{
       method: 'POST',
-      body:JSON.stringify(data),
+      body:JSON.stringify(envio),
       headers: {"Content-Type":"application/json"},
     }
     )
@@ -49,7 +53,6 @@ function App() {
   // Display JSON data in readable format
   const PrettyPrintJson = (data) => {
     handSubmit(data)
-    console.log(data);
     let tags = [];
     let texto='';
     for(let i=0;i<data.text.readResults[0].lines.length;i++){
@@ -79,13 +82,24 @@ function App() {
       </div>
     )
   };
-  
+  const Usuario = () =>{
+    return (<div className='container-url'>
+        <form onSubmit={ev => {ev.preventDefault(); setCorreo(ev.target.correo.value)}}>
+        <label>Correo <b> →</b></label>
+          <input type="text" name='correo' autoComplete='off' placeholder="Usuario"></input>
+          <button type="submit">Guardar</button>
+        </form>
+      </div>
+      )
+  }
   const Analyze = () => {
+    Usuario()
     return (
     <div className='container2'>
       <h1 className="tittle">Analizar Imagen</h1>
       {!processing &&
         <div className='container3'>
+                    {Usuario()}
           <div className='container-url'>
             <label>Ingrese Url <b> →</b></label>
             <input type="text" placeholder="Enter URL or leave empty forimage from collection" size="70" onChange={handleChange}></input>
@@ -110,7 +124,7 @@ function App() {
   function Render() {
     const ready = ComputerVisionIsConfigured();
     if (ready) {
-      return <Analyze />;
+      return (<Analyze />);
     }
     return <CantAnalyze />;
   }

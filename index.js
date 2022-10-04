@@ -10,27 +10,29 @@ app.use(express.static(path.join(__dirname, '/client/build')));
 const port = process.env.PORT || 5000;
 //Routes 
      //create a todo 
-        app.post("/",(req,res)=>{
-            console.log(req.body)
-        })
+      
         app.post("/todos", async (req, res)=>{
             try {
-                console.log(req.body)
-                
-                const data = req.body;
-              
-                let texto='';
-                for(let i=0;i<data.text.readResults[0].lines.length;i++){
-                    texto += `${data.text.readResults[0].lines[i].text} `
-                }
-                let hola ='';
-                for (let i=0;i<data.tags.length;i++){
-                    hola += `${data.tags[i].name}, ` 
-                }
-                console.log(texto);
-                const captions=data.description.captions;
-                const newTodo = await pool.query(`UPDATE "AspNetUsers" SET tags= $1, description= $2 ,textconst= $3`,[hola,captions,texto])
+            const  {correo,data} = req.body;
+    
+            let texto='';
+            for(let i=0;i<data.text.readResults[0].lines.length;i++){
+                texto += `${data.text.readResults[0].lines[i].text} `
+            }
+            let tags ='';
+            for (let i=0;i<data.tags.length;i++){
+                tags += `${data.tags[i].name}, ` 
+            }
+            const captions=data.description.captions;
+            const registro = await pool.query(`SELECT userid FROM descripcion WHERE userid = $1 `,[correo]); 
+            console.log(registro);
+            if (registro.rowCount == 0){
+                const newTodo = await pool.query(`Insert INTO descripcion (tags,description,textconst,userid) VALUES($1,$2,$3,$4) `,[tags,captions,texto,correo])
                 res.json(newTodo);
+            }else if(registro.rowCount > 0){
+                 newTodo = await pool.query(`UPDATE descripcion SET tags= $1, description= $2 ,textconst= $3 WHERE userid = $4 `,[tags,captions,texto,correo])
+                 res.json(newTodo);
+            }   
             } catch (err) {
                 console.log(err.message);
             }
