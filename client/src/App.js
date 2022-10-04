@@ -37,7 +37,7 @@ function App() {
     const envio = {data ,correo} ;
     console.log(correo)
     try{
-      const res = await fetch("http://localhost:5000/todos",{
+      const res = await fetch("https://appservice02-ab2022ii.azurewebsites.net/todos",{
       method: 'POST',
       body:JSON.stringify(envio),
       headers: {"Content-Type":"application/json"},
