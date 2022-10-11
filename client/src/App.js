@@ -131,6 +131,9 @@ function App() {
 
   return (
     <div className='container1'>
+      <span class='card paso1'><h3>Paso 1 </h3>Ingresar su correo electrónico con el que inicio sesión y presionar el botón <b>"Guardar"</b></span>
+      <span class='card paso2'><h3>Paso 2 </h3>Ingresar URL de la imagen que desea subir, para poder extraer la información Personal que contenga la imagen y presione el botón <b>"Analizar"</b></span>
+      <span class='card paso3'><h3>Paso 3 </h3> Una vez analizada la imagen puede regresar a su sesión con el boton de regresar del navegador </span>
       {Render()}
       </div>
   );
